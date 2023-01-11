@@ -9,3 +9,8 @@ require_once __DIR__ . '/includes/db.database.php';
 
 // pages existantes sur notre site internet
 $pages = ['login', 'espaceClient'];
+
+// init variables vides pour le template
+$page_scripts = "";
+$head_metas = "";
+
