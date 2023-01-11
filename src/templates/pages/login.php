@@ -1,4 +1,5 @@
  <?php
+
     $page_title = "Login - Bank-JLF.com";
 
     // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
@@ -19,9 +20,6 @@
              <span class="title">Connexion</span>
 
              <form action="actions/login.php" method="POST">
-
-
-
                  <div class="input-field">
                      <input name="email" type="text" placeholder="Entrer votre email" required>
                      <i class="fa-regular fa-envelope"></i>
@@ -31,14 +29,6 @@
                      <i class="fa-solid fa-lock"></i>
                      <i class="fa-regular fa-eye-slash showHidePw"></i>
                  </div>
-
-
-
-
-
-
-
-
 
                  <div class="checkbox-text">
                      <div class="checkbox-content">
@@ -65,21 +55,25 @@
          <div class="form signup">
              <span class="title">Inscription</span>
 
-             <form action="#">
+             <form action="actions/login.php" method="POST">
                  <div class="input-field">
-                     <input type="text" placeholder="Entrer votre Nom" required>
+                     <input name="fullName" type="text" placeholder="Entrer votre Nom" required>
                      <i class="uil uil-user"></i>
                  </div>
                  <div class="input-field">
-                     <input type="text" placeholder="Entrer votre email" required>
+                     <input name="emailInscription" type="text" placeholder="Entrer votre email" required>
                      <i class="uil uil-envelope icon"></i>
                  </div>
                  <div class="input-field">
-                     <input type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
+                    <input name="phoneNumber" type="text" placeholder="Entrer votre numero de téléphone" required>
+                    <i class="uil uil-user"></i>
+                 </div>
+                 <div class="input-field">
+                     <input name="passwordInscription" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
                      <i class="fa-solid fa-lock"></i>
                  </div>
                  <div class="input-field">
-                     <input type="password" id="cpassword" name="cpassword" class="password" placeholder="Confirmer le mot de passe" required>
+                     <input name="confirmationPassword" type="password" id="cpassword" name="cpassword" class="password" placeholder="Confirmer le mot de passe" required>
                      <i class="fa-solid fa-lock"></i>
                      <i class="fa-regular fa-eye-slash showHidePw"></i>
                  </div>
@@ -92,7 +86,7 @@
                  </div>
 
                  <div class="input-field button">
-                     <input type="button" value="Inscription">
+                     <input type="submit" value="Inscription" name="Inscription">
                  </div>
              </form>
 
