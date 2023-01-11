@@ -25,7 +25,11 @@ nav {
 #title_game{
     color: #FC814A;
 }
-#games{
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+#onglet{
     padding-top: 4%;
     justify-content: space-around;
     flex: 4;

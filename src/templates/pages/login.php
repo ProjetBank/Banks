@@ -1,5 +1,5 @@
 <?php
-    $page_title = "Login - JLF.com";
+    $page_title = "Login - MonSite.com";
 
     // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
     ob_start();
@@ -18,7 +18,7 @@
          <div class="form login">
              <span class="title">Connexion</span>
 
-             <form action="/?page=accueil">
+             <form action="/?page=mon_espace" method="POST">
                  <div class="input-field">
                      <input type="text" placeholder="Entrer votre email" required>
                      <i class="fa-regular fa-envelope"></i>
