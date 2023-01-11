@@ -1,3 +1,32 @@
 .soldeCompte{
-    background-color: blue;
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    font-size: 80px;
+}
+
+.soldeCompte p{
+    margin: 0;
+    color: green;
+    text-align: center;
+    padding: 60px;
+}
+
+
+
+.listeTransaction{
+    display: flex;
+    flex-direction: column;
+}
+
+.transactionDate{
+    height: 30px;
+}
+
+.transactionInfos{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-left: 75px;
+
 }

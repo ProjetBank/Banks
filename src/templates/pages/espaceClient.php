@@ -10,12 +10,11 @@ ob_start();
     <div class="soldeCompte">
     <?php 
 
-    $requestSolde = $conn -> prepare("SELECT solde FROM Bankaccounts WHERE id_user = 1");
+    $requestSolde = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = 1");
     $requestSolde -> execute();
     $solde = $requestSolde -> fetch();
-
-    echo $solde[0];
     ?>
+    <p><?= $solde[0];?><?= $solde[1];?></p>
 
     </div>
     <div class="listeTransaction">
@@ -29,9 +28,13 @@ ob_start();
 
         while($allTransaction = $transaction -> fetch()){
             ?>
-            <p><?= $allTransaction['name_transaction'];  ?></p>
-            <p><?= $allTransaction['montant'];  ?></p>
-            <p><?= date_create($allTransaction['date'])->format('d/m/Y');  ?></p>
+            <div class="transactionDate">
+                <p><?= date_create($allTransaction['date'])->format('d/m/Y');  ?></p>
+            </div>
+            <div class="transactionInfos">
+                <p><?= $allTransaction['name_transaction'];  ?></p>
+                <p><?= $allTransaction['montant'];  ?></p>
+            </div>
             <?php
         }
         
