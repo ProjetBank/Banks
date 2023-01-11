@@ -1,5 +1,5 @@
  <?php
-    $page_title = "Login - MonSite.com";
+    $page_title = "Login - Bank-JLF.com";
 
     // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
     ob_start();
@@ -18,9 +18,12 @@
          <div class="form login">
              <span class="title">Connexion</span>
 
-             <form action="#">
+             <form action="actions/login.php" method="POST">
+
+
+
                  <div class="input-field">
-                     <input type="text" placeholder="Entrer votre email" required>
+                     <input name="email" type="text" placeholder="Entrer votre email" required>
                      <i class="fa-regular fa-envelope"></i>
                  </div>
                  <div class="input-field">
@@ -28,6 +31,14 @@
                      <i class="fa-solid fa-lock"></i>
                      <i class="fa-regular fa-eye-slash showHidePw"></i>
                  </div>
+
+
+
+
+
+
+
+
 
                  <div class="checkbox-text">
                      <div class="checkbox-content">
@@ -39,7 +50,7 @@
                  </div>
 
                  <div class="input-field button">
-                     <input type="button" value="Connexion">
+                     <input type="submit" value="Connexion" name="Connexion">
                  </div>
              </form>
 
