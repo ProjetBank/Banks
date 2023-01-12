@@ -1,10 +1,9 @@
-
-
-
 <?php
+
+include_once __DIR__ . "/../src/init.php";
+
 $pagecssautre ='';
 $pagecss ='';
-$pages = ['accueil' , 'login','mon_espace'];
 
 $page ='accueil';
 if (isset($_GET['page'])){
@@ -38,5 +37,11 @@ if ($page == 'accueil'){
 }else {
     include_once __DIR__ . "/../src/templates/partials/$pagecss/footer_".$pagecss.".php";
 }
+
+$requestSolde = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = 1");
+$requestSolde -> execute();
+$solde = $requestSolde -> fetch();
+
+
 
 ?>

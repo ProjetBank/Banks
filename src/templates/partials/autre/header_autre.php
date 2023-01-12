@@ -11,10 +11,10 @@
 
     <nav id="onglet">
         <div id="offer">
-            <h2><a href="/?page=accueil" id="title_game">Mes comptes</a></h2>
+            <h2><a href="/?page=mes_comptes" id="title_game">Mes comptes</a></h2>
         </div>
         <div id="info">
-            <h2><a href="/?page=accueil" id="title_game">Virements</a></h2>
+            <h2><a href="/?page=virements" id="title_game">Virements</a></h2>
         </div>
         <div id="myspace">
             <h2><a href="/?page=login" id="title_game">Transaction</a></h2>

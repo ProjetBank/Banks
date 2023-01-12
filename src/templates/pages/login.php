@@ -11,7 +11,6 @@
  <!-- ==== Emoji tkt ==== -->
 
 
- <!--<title>Login & Registration Form</title>-->
 
  <div class="container">
      <div class="forms">
