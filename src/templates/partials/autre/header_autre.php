@@ -14,10 +14,10 @@
             <h2><a href="/?page=mes_comptes" id="title_game">Mes comptes</a></h2>
         </div>
         <div id="info">
-            <h2><a href="/?page=virements" id="title_game">Virements</a></h2>
+            <h2><a href="/?page=mes_virements" id="title_game">Virements</a></h2>
         </div>
         <div id="myspace">
-            <h2><a href="/?page=login" id="title_game">Transaction</a></h2>
+            <h2><a href="/?page=mes_transactions" id="title_game">Transaction</a></h2>
         </div>
     </nav>
 </div>

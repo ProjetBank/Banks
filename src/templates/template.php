@@ -7,7 +7,6 @@
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$pagecss?>/header_<?=$pagecss?>.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$pagecss?>/<?=$page?>.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$pagecss?>/footer_<?=$pagecss?>.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$page?>.css'>
     <title> <?= $page_title;  ?></title>
 </head>
 

@@ -33,6 +33,7 @@ if(isset($_POST['Connexion'])) {
                 header('Location: http://localhost:8888/?page=accueil');
                 exit();
             }else if($requete['role'] == 10){
+                $_SESSION['user'] = $requete;
                 header('Location: http://localhost:8888/?page=espaceClient');
                 exit();
             }
