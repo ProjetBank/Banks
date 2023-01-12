@@ -17,7 +17,7 @@
          <div class="form login">
              <span class="title">Connexion</span>
 
-             <form action="actions/login.php" method="POST">
+             <form action="/?page=espaceClient" method="POST">
                  <div class="input-field">
                      <input name="email" type="text" placeholder="Entrer votre email" required>
 
