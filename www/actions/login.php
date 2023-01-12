@@ -25,16 +25,18 @@ if(isset($_POST['Connexion'])) {
         $requete = $requeteStatment->fetch();
 
         if(!empty($requete)){
+            echo $requete['role'];
             if($requete['role'] == 1000 || $requete['role'] == 200){
                 $_SESSION['user'] = $requete;
-                header('Location: http://localhost:8888/?page=espaceAdmin');
+                header('Location: /?page=espaceAdmin');
                 exit(); 
-            }else if($requete['role'] == 1 || $requete['role'] == 0){      
-                header('Location: http://localhost:8888/?page=accueil');
+            }else if($requete['role'] == 1 || $requete['role'] == 0){    
+                $_SESSION['user'] = $requete;  
+                header('Location: /?page=accueil');
                 exit();
             }else if($requete['role'] == 10){
                 $_SESSION['user'] = $requete;
-                header('Location: http://localhost:8888/?page=espaceClient');
+                header('Location: /?page=espaceClient');
                 exit();
             }
         }
@@ -96,10 +98,10 @@ if(isset($_POST['Inscription'])){
         $statement = $conn->prepare('INSERT INTO users (IBAN, Full_Name, phone, email, password, role) VALUES ("FR002",?, ?, ?, ?, 1)');
         $statement->execute([$pseudo, $phone, $emailInscription, $new_mdp]);
 
-        header('Location: http://localhost:8888/?page=login');
+        header('Location: /?page=login');
         exit();
     }else{
-        header('Location: http://localhost:8888/?page=login');
+        header('Location: /?page=login');
         exit();
     }
 }
