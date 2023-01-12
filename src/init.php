@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 require_once __DIR__ . '/includes/db.database.php';
 
 // pages existantes sur notre site internet
-$pages = ['login', 'espaceClient'];
+$pages = ['login', 'espaceClient', 'espaceAdmin'];
 
 // init variables vides pour le template
 $page_scripts = "";

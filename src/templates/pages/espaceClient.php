@@ -1,8 +1,10 @@
 <?php
 $page_title = "Espace Client - Bank-JLF.com";
 
+
 // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
 ob_start();
+
 ?>
 
 
@@ -10,9 +12,10 @@ ob_start();
     <div class="soldeCompte">
     <?php 
 
-    $requestSolde = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = 1");
-    $requestSolde -> execute();
+    $requestSolde = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = ?");
+    $requestSolde -> execute([$_SESSION['user']['id']]);
     $solde = $requestSolde -> fetch();
+
     ?>
     <p><?= $solde[0];?><?= $solde[1];?></p>
 
@@ -21,10 +24,10 @@ ob_start();
         <?php 
         $requestAllTransaction= 'SELECT name_transaction, montant, date
         FROM transactions
-        WHERE id_client = 1';
+        WHERE id_client = ?';
 
         $transaction = $conn -> prepare($requestAllTransaction);
-        $transaction -> execute();
+        $transaction -> execute([$_SESSION['user']['id']]);
 
         while($allTransaction = $transaction -> fetch()){
             ?>

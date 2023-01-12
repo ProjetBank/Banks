@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '../../../src/includes/db.database.php';
 
 
@@ -22,17 +23,18 @@ if(isset($_POST['Connexion'])) {
         $requete = $requeteStatment->fetch();
 
         if(!empty($requete)){
-            if($requete['role'] != 0 && $requete['role'] != 1){
+            if($requete['role'] == 1000 || $requete['role'] == 200){
                 $_SESSION['user'] = $requete;
-                header('Location: http://localhost:8888/?page=espaceClient');
+                header('Location: http://localhost:8888/?page=espaceAdmin');
                 exit(); 
-            }else{      
-                header('Location: http://localhost:8888/?page=login');
+            }else if($requete['role'] == 1 || $requete['role'] == 0){      
+                header('Location: http://localhost:8888/?page=accueil');
+                exit();
+            }else if($requete['role'] == 10){
+                header('Location: http://localhost:8888/?page=espaceClient');
                 exit();
             }
-                
         }
-    
     }
 }
 
