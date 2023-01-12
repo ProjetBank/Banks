@@ -39,7 +39,7 @@
                  </div>
 
                  <div class="input-field button">
-                     <input type="button" value="Connexion">
+                     <input type="submit" name="Coonnexion" value="Connexion">
                  </div>
              </form>
 
@@ -49,6 +49,9 @@
                  </span>
              </div>
          </div>
+
+
+
 
          <!-- Registration Form -->
          <div class="form signup">
@@ -81,7 +84,7 @@
                  </div>
 
                  <div class="input-field button">
-                     <input type="button" value="Inscription">
+                     <input type="submit" name="Inscription" value="Inscription">
                  </div>
              </form>
 
