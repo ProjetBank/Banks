@@ -5,9 +5,7 @@
             <img src="../assets/imgs/bank_icon.png" id="icon_site" alt ="icon">
         </a>
     </div>
-    <div>
-        <h1 id="title_site">BANQUE JLF</h1>
-    </div>
+
 
     <nav id="onglet">
         <div id="offer">
