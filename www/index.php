@@ -12,11 +12,14 @@ if (isset($_GET['page'])){
     }
 
 }
-if ($page != 'accueil'){
-    $pagecss = 'autre';
+if ($page == 'accueil'){
+    $pagecss = 'accueil';
+} elseif ($page == 'espaceAdmin' || $page == 'utilisateurs' || $page == 'validations' || $page == 'transactions'){
+    $pagecss = 'espaceAdmin';
 } else {
-    $pagecss = $page;
+    $pagecss = 'autre';
 }
+
 
 if ($page == 'accueil'){
     include_once __DIR__ . "/../src/templates/partials/$pagecss/header_".$pagecss.".php";

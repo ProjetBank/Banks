@@ -25,7 +25,6 @@ if(isset($_POST['Connexion'])) {
         $requete = $requeteStatment->fetch();
 
         if(!empty($requete)){
-            echo $requete['role'];
             if($requete['role'] == 1000 || $requete['role'] == 200){
                 $_SESSION['user'] = $requete;
                 header('Location: /?page=espaceAdmin');
