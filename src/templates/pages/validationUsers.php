@@ -4,24 +4,6 @@ $page_title = "Espace Validation - Bank-JLF.com";
 
 // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
 ob_start();
-
-
-function valider($conn, $valeur){
-    $update = 'UPDATE users
-    SET role = 10
-    WHERE id = ?;';
-    $updateUsers = $conn -> prepare($update);
-    $updateUsers -> execute([$valeur]);
-}
-
-function supprimer($conn, $valeur){
-    $update = 'DELETE *
-    FROM users
-    WHERE id = ?;';
-    $updateUsers = $conn -> prepare($update);
-    $updateUsers -> execute([$valeur]);
-}
-
 ?>
 
 <main>
@@ -54,8 +36,14 @@ function supprimer($conn, $valeur){
                 <p><?= $AllValidation['Full_Name']; ?></p>
                 <p><?= $AllValidation['phone'];  ?></p>
                 <p><?= $AllValidation['email'];  ?></p>
-                <p><button>Autorisé</button></p>
-                <p><button>Refusé</button></p>
+                <form method="POST" action="">
+                    <input type="hidden" name="idUser1" value="<?=$AllValidation['id']  ?>">
+                    <input type="submit" name="buttonAcceptation" value="Autorisé">
+                </form>
+                <form method="POST" action="">
+                    <input type="hidden" name="idUser2" value="<?=$AllValidation['id']  ?>">
+                    <input type="submit" name="buttonRefus" value="Refusé">
+                </form>
             </div>
             <?php
             }
@@ -68,31 +56,27 @@ function supprimer($conn, $valeur){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
+if(isset($_POST['buttonAcceptation'])){
+    $update = 'UPDATE users SET role = 10 WHERE id = ?;';
+    $updateUsers = $conn -> prepare($update);
+    $updateUsers -> execute([$_POST['idUser1']]);
+
+    header('Location: /?page=validationUsers');
+    exit();
+}
+
+if(isset($_POST['buttonRefus'])){
+    $update = 'DELETE FROM users WHERE id = ?;';
+    $updateUsers = $conn -> prepare($update);
+    $updateUsers -> execute([$_POST['idUser2']]);
+
+    header('Location: /?page=validationUsers');
+    exit();
+}
+
+
+
 // ob_get_clean c'est la fermeture des "" pour finir la chaine de caracteres et l'enregistrer dans la variable
 $page_content = ob_get_clean();
 ?>

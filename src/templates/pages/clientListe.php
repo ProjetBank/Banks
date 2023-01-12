@@ -6,12 +6,16 @@ $page_title = "Espace Validation - Bank-JLF.com";
 ob_start();
 
 
-function ban($conn, $valeur){
-    $update = 'UPDATE users
-    SET role = 0
-    WHERE id = ?;';
-    $updateUsers = $conn -> prepare($update);
-    $updateUsers -> execute([$valeur]);
+function NameExiste($conn, $pseudo){
+    $functionPseudo = $conn -> prepare('SELECT users.* FROM users WHERE users.Full_Name = ?');
+    $functionPseudo -> execute([$pseudo]);
+    $functionPseudoExiste = $functionPseudo-> fetch();
+    
+    if(empty($functionPseudoExiste)){
+        return false;
+    }else{
+        return true;
+    }
 }
 
 ?>
@@ -39,51 +43,95 @@ function ban($conn, $valeur){
     </div>
 
 
-    <div class="table-resultUsers">
-        <?php
-            if(isset($_POST['search'])){
-                $requeteValidationUser= 'SELECT * FROM users WHERE role = 10 AND Full_Name = ?';
+    <div class="resultUsers">
+        <div class="container-itemScore">
+            <?php
+                if(isset($_POST['search'])){
+                    if(NameExiste($conn, $_POST['search'])){
 
-                $Validation = $conn -> prepare($requeteValidationUser);
-                $Validation -> execute([$_POST['search']]);
+                        $requeteValidationUser= 'SELECT * FROM users WHERE role = 10 AND Full_Name = ?';
 
-                while($AllValidation = $Validation -> fetch()){
-                ?>
-                <div>
-                    <p><?= $AllValidation['id'];  ?></p>
-                    <p><?= $AllValidation['Full_Name']; ?></p>
-                    <p><?= $AllValidation['phone'];  ?></p>
-                    <p><?= $AllValidation['email'];  ?></p>
-                    <p><button>Bannir</button></p>
-                </div>
-                <?php
+                        $Validation = $conn -> prepare($requeteValidationUser);
+                        $Validation -> execute([$_POST['search']]);
+
+                        while($AllValidation = $Validation -> fetch()){
+                        ?>
+                            <p><?= $AllValidation['id'];  ?></p>
+                            <p><?= $AllValidation['Full_Name']; ?></p>
+                            <p><?= $AllValidation['phone'];  ?></p>
+                            <p><?= $AllValidation['email'];  ?></p>
+                            <form method="post" action="">
+                                <input type="hidden" name="idUser" value="<?php $AllValidation['id'];  ?>">
+                                <input type="submit" name="buttonBan" value="Ban">
+                            </form>
+                            
+                        <?php
+                        }
+                    }else{
+
+                        $requeteValidationUser= 'SELECT * FROM users WHERE role = 10';
+
+                        $Validation = $conn -> prepare($requeteValidationUser);
+                        $Validation -> execute();
+
+                        while($AllValidation = $Validation -> fetch()){
+                        ?>
+                        <div>
+                            <p><?= $AllValidation['id'];  ?></p>
+                            <p><?= $AllValidation['Full_Name']; ?></p>
+                            <p><?= $AllValidation['phone'];  ?></p>
+                            <p><?= $AllValidation['email'];  ?></p>
+                            <form method="POST" action="">
+                                <input type="hidden" name="idUser" value="<?php $AllValidation['id'];  ?>">
+                                <input type="submit" name="buttonBan" value="Ban">
+                            </form>
+                        </div>
+                        <?php
+                        }
+                    }
+
+                }else{
+                    $requeteValidationUser= 'SELECT * FROM users WHERE role = 10';
+
+                    $Validation = $conn -> prepare($requeteValidationUser);
+                    $Validation -> execute();
+
+                    while($AllValidation = $Validation -> fetch()){
+                    ?>
+                    <div>
+                        <p><?= $AllValidation['id'];  ?></p>
+                        <p><?= $AllValidation['Full_Name']; ?></p>
+                        <p><?= $AllValidation['phone'];  ?></p>
+                        <p><?= $AllValidation['email'];  ?></p>
+                        <form method="POST" action="">
+                            <input type="hidden" name="idUser" value="<?=$AllValidation['id']  ?>">
+                            <input type="submit" name="buttonBan" value="Ban">
+                        </form>
+                    </div>
+                    <?php
+                    }
                 }
-            }else{
-                $requeteValidationUser= 'SELECT * FROM users WHERE role = 10';
-
-                $Validation = $conn -> prepare($requeteValidationUser);
-                $Validation -> execute();
-
-                while($AllValidation = $Validation -> fetch()){
                 ?>
-                <div>
-                    <p><?= $AllValidation['id'];  ?></p>
-                    <p><?= $AllValidation['Full_Name']; ?></p>
-                    <p><?= $AllValidation['phone'];  ?></p>
-                    <p><?= $AllValidation['email'];  ?></p>
-                    <p><button><?= $AllValidation['id']; ?></button></p>
-                </div>
-                <?php
-                }
-            }
-            ?>
-        
+        </div>
     </div>
 
 
 </main>
 
 <?php
+if(isset($_POST['buttonBan'])){
+    $update = 'UPDATE users
+    SET role = 0
+    WHERE id = ?;';
+    $updateUsers = $conn -> prepare($update);
+    $updateUsers -> execute([$_POST['idUser']]);
+
+    header('Location: /?page=clientListe');
+    exit();
+}
+
+
+
 // ob_get_clean c'est la fermeture des "" pour finir la chaine de caracteres et l'enregistrer dans la variable
 $page_content = ob_get_clean();
 ?>
