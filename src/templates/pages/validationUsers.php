@@ -12,15 +12,20 @@ ob_start();
             <h1> BANQUE JLF | Compte en attente de validation. </h1>
         </div>
     </div>
+    <form method="POST" id="search_bar">
+            <input type="text" id="input_search_name" name="input_search_nickname" placeholder="Chercher un user">
+            <button id="submit_search_name" type="submit">Chercher</button>
+    </form>
 
     <div class="TableUsers">
         <h3 class="tableTitleScores">ID</h3>
         <h3 class="tableTitleScores">Full Name</h3>
         <h3 class="tableTitleScores">Phone number</h3>
         <h3 class="tableTitleScores">Email</h3>
+        <h3 class="tableTitleScores">Opération</h3>
     </div>
 
-
+ 
     <div class="table-resultUsers">
         <?php
 
@@ -31,19 +36,21 @@ ob_start();
 
             while($AllValidation = $Validation -> fetch()){
             ?>
-            <div>
+            <div class="users">
                 <p><?= $AllValidation['id'];  ?></p>
                 <p><?= $AllValidation['Full_Name']; ?></p>
                 <p><?= $AllValidation['phone'];  ?></p>
                 <p><?= $AllValidation['email'];  ?></p>
-                <form method="POST" action="">
-                    <input type="hidden" name="idUser1" value="<?=$AllValidation['id']  ?>">
-                    <input type="submit" name="buttonAcceptation" value="Autorisé">
-                </form>
-                <form method="POST" action="">
-                    <input type="hidden" name="idUser2" value="<?=$AllValidation['id']  ?>">
-                    <input type="submit" name="buttonRefus" value="Refusé">
-                </form>
+                <div id="operation">
+                    <form method="POST" action="" id="operation_auto">
+                        <input type="hidden" name="idUser1" id="idUser1" value="<?=$AllValidation['id']  ?>">
+                        <input type="submit" name="buttonAcceptation" id="idUser1" value="Autorisé">
+                    </form>
+                    <form method="POST" action="" id="operation_refu">
+                        <input type="hidden" name="idUser2" id="idUser2" value="<?=$AllValidation['id']  ?>">
+                        <input type="submit" name="buttonRefus" id="idUser2" value="Refusé">
+                    </form>
+                </div>
             </div>
             <?php
             }

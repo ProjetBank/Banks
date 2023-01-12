@@ -9,10 +9,10 @@
 
     <nav id="onglet">
         <div id="offer">
-            <h2><a href="/?page=utilisateurs" id="title_game">Utilisateurs</a></h2>
+            <h2><a href="/?page=clientListe" id="title_game">Utilisateurs</a></h2>
         </div>
         <div id="info">
-            <h2><a href="/?page=validations" id="title_game">Validations</a></h2>
+            <h2><a href="/?page=validationUsers" id="title_game">Validations</a></h2>
         </div>
         <div id="myspace">
             <h2><a href="/?page=transactions" id="title_game">Transactions</a></h2>
