@@ -14,6 +14,7 @@
     <?= $page_content; ?>
     <?= $page_scripts; ?>
     <script src="https://kit.fontawesome.com/f6ebfda22d.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/mes_virements.js"></script>
 </body>
 
 </html>

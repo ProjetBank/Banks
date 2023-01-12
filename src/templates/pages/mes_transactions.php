@@ -16,18 +16,20 @@ ob_start()
         $requestAllTransaction= 'SELECT name_transaction, montant, date
         FROM transactions
         WHERE id_client = ?';
-
+        
         $transaction = $conn -> prepare($requestAllTransaction);
         $transaction -> execute([$_SESSION['user']['id']]);
 
         while($allTransaction = $transaction -> fetch()){
             ?>
-            <div class="transactionDate">
-                <p><?= date_create($allTransaction['date'])->format('d/m/Y');  ?></p>
-            </div>
-            <div class="transactionInfos">
-                <p><?= $allTransaction['name_transaction'];  ?></p>
-                <p><?= $allTransaction['montant'];  ?></p>
+            <div id="transactions">
+                <div class="transactionDate">
+                    <p><?= date_create($allTransaction['date'])->format('d/m/Y');  ?></p>
+                </div>
+                <div class="transactionInfos">
+                    <p><?= $allTransaction['name_transaction'];  ?></p>
+                    <p><?= $allTransaction['montant'];  ?></p>
+                </div>
             </div>
             <?php
         }

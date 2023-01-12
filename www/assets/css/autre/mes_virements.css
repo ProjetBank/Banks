@@ -14,16 +14,6 @@
     margin-left: 75px;
 
 }
-#transactions{
-    display: flex;
-    border: 2px solid black;
-    border-radius: 30px;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 10%;
-    padding-left: 10%;
-}
-
 
 body{
     background-color: #B4CDED;
@@ -31,10 +21,28 @@ body{
     background-size: 100%;
     margin: 0;
     padding: 0;
-
     
 }
+#virements_body{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10%;
+}
+#virement,#retirer,#deposer{
+    border: 2px solid black;
+    border-radius: 30px;
+    padding-left: 2%;
+    padding-right: 2%;
 
+}
+#virementOnClick,#retirerOnClick,#deposerOnClick{
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 30px;
+    padding-left: 2%;
+    padding-right: 2%;
+
+}
 #accueil_title{
     text-align: center;
 }

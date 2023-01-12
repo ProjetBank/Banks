@@ -1,5 +1,5 @@
 <?php
-$page_title = "Espace Client - Bank-JLF.com";
+$page_title = "Utilisateurs - Bank-JLF.com";
 
 
 // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
