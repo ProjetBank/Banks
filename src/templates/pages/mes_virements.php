@@ -31,33 +31,59 @@ ob_start()
     </div>
 
     <div id="div_form_deposer">
-    <form action="actions/login.php" id="deposer_form" method="POST">
+    <form action="#" id="deposer_form" method="POST">
                  <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Numéro de Carte Bleue" required>
+                     <input name="deposite_cb" type="text" placeholder="Numéro de Carte Bleue" required>
                  </div>
                  <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Cryptogram" required>
+                     <input name="deposite_crypt" type="text" placeholder="Cryptogram" required>
                  </div>
                  <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Date d'expiration" required>
+                     <input name="deposite_date" type="text" placeholder="Date d'expiration" required>
                  </div>
                  
                  <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Nom" required>
+                     <input name="deposite_name" type="text" placeholder="Nom" required>
                  </div>
                  <div class="input-field">
-                     <input name="passwordInscription" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
+                     <input name="deposite_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
                  </div>
                  <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Sommes à deposer" required>
+                     <input value="0" name="deposite_solde" type="text" placeholder="Sommes à deposer" required>
                  </div>
                  
             
                  <div class="input-field button">
-                     <input type="submit" value="Deposer" name="Inscription">
+                     <input type="submit" value="Deposer" name="Deposer">
 
                  </div>
              </form>
+             <?php 
+
+             $error = false;
+
+             if(isset($_POST['Deposer'])) {
+                          
+                 if(!$error){
+                    $deposite = $_POST['deposite_solde'];
+                    
+                    $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $deposite");
+                    $requestSolde -> execute([$_SESSION['user']['id']]);
+                    $solde = $requestSolde -> fetch();
+                 }
+             }
+
+                $requestDeposite = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = ?");
+                $requestDeposite -> execute([$_SESSION['user']['id']]);
+                $soldeDeposite = $requestDeposite -> fetch();
+
+                ?>
+            <div id="compte">
+                <div class="soldeCompte">
+                    <p id="deposite" ><?=$soldeDeposite["solde"];?><?= $soldeDeposite[1];?></p>
+                </div>
+            </div>
+
     </div>
     <div id="div_form_retirer">
     <form action="actions/login.php" id="retirer_form" method="POST">
@@ -102,11 +128,7 @@ ob_start()
 </div>
 
 <?php
-//DEPOSER UNE SOMMES
-$requestDeposite = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = ?");
-$requestDeposite -> execute([$_SESSION['user']['id']]);
-$deposer = $requestDeposite -> fetch();
-//DEPOSER UNE SOMMES
+
 
 ?>
 
