@@ -2,6 +2,7 @@
 
     $page_title = "Login - Bank-JLF.com";
 
+
     // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
     ob_start();
     ?>
@@ -11,9 +12,6 @@
  -->
  <!-- ==== Emoji tkt ==== -->
 
-
- <!--<title>Login & Registration Form</title>-->
-
  <div class="container">
      <div class="forms">
          <div class="form login">
@@ -22,6 +20,7 @@
              <form action="actions/login.php" method="POST">
                  <div class="input-field">
                      <input name="email" type="text" placeholder="Entrer votre email" required>
+
                      <i class="fa-regular fa-envelope"></i>
                  </div>
                  <div class="input-field">
@@ -41,6 +40,7 @@
 
                  <div class="input-field button">
                      <input type="submit" value="Connexion" name="Connexion">
+
                  </div>
              </form>
 
@@ -74,6 +74,7 @@
                  </div>
                  <div class="input-field">
                      <input name="confirmationPassword" type="password" id="cpassword" name="cpassword" class="password" placeholder="Confirmer le mot de passe" required>
+
                      <i class="fa-solid fa-lock"></i>
                      <i class="fa-regular fa-eye-slash showHidePw"></i>
                  </div>
@@ -87,6 +88,7 @@
 
                  <div class="input-field button">
                      <input type="submit" value="Inscription" name="Inscription">
+
                  </div>
              </form>
 
@@ -104,3 +106,4 @@
  <?php
     // ob_get_clean c'est la fermeture des "" pour finir la chaine de caracteres et l'enregistrer dans la variable
     $page_content = ob_get_clean();
+

@@ -1,15 +1,47 @@
 <?php
 
-    include_once __DIR__ . "/../src/init.php";
+include_once __DIR__ . "/../src/init.php";
 
-    $page = 'login';
-    if (isset($_GET['page'])) {
-        if (in_array($_GET['page'], $pages)) {
-            $page = $_GET['page'];
-        }
+$pagecssautre ='';
+$pagecss ='';
+
+$page ='accueil';
+if (isset($_GET['page'])){
+    if (in_array($_GET['page'], $pages)){
+        $page = $_GET['page'];
     }
 
-    include_once __DIR__ . "/../src/templates/pages/$page.php";
-    include_once __DIR__ . "/../src/templates/template.php";
+}
+if ($page != 'accueil'){
+    $pagecss = 'autre';
+} else {
+    $pagecss = $page;
+}
+
+if ($page == 'accueil'){
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/header_".$pagecss.".php";
+} elseif ($page == 'login'){
+
+} else {
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/header_".$pagecss.".php";
+}
+include_once __DIR__ . "/../src/templates/pages/$page.php";
+include_once __DIR__ . "/../src/templates/template.php";
+
+
+if ($page == 'accueil'){
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/footer_".$pagecss.".php";
     
+} elseif ($page == 'login'){
+    
+}else {
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/footer_".$pagecss.".php";
+}
+
+$requestSolde = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = 1");
+$requestSolde -> execute();
+$solde = $requestSolde -> fetch();
+
+
+
 ?>

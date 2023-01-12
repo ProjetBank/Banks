@@ -7,6 +7,7 @@ require_once __DIR__ . '../../../src/includes/db.database.php';
 $error = false;
 
 if(isset($_POST['Connexion'])) {
+
     if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){ 
         $email = $_POST['email'];
 
@@ -17,7 +18,8 @@ if(isset($_POST['Connexion'])) {
     $password = $_POST['password'];
 
     if(!$error){
-        $requeteLogin = 'SELECT *  FROM users WHERE email = ? AND password = ?';
+        $requeteLogin = 'SELECT * FROM users WHERE email = ? AND password = ?';
+
         $requeteStatment = $conn->prepare($requeteLogin);
         $requeteStatment->execute([$email, hash('sha256',$password)]);
         $requete = $requeteStatment->fetch();
