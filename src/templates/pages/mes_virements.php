@@ -78,51 +78,96 @@ ob_start()
                 $soldeDeposite = $requestDeposite -> fetch();
 
                 ?>
-            <div id="compte">
+
+
+    </div>
+    <div id="div_form_retirer">
+    <form action="#" id="retirer_form" method="POST">
+                 <div class="input-field">
+                     <input name="withdraw_name" type="text" placeholder="Nom" required>
+                 </div>
+                 <div class="input-field">
+                     <input name="withdraw_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
+                 </div>
+                 <div class="input-field">
+                     <input name="withdraw_solde" type="text" placeholder="Sommes à retirer" required>
+                 </div>
+            
+                 <div class="input-field button">
+                     <input type="submit" value="Retirer" name="Retirer">
+                 </div>
+             </form>
+             <?php 
+
+            $error = false;
+
+            if(isset($_POST['Retirer'])) {
+                        
+                if(!$error){
+
+                $withdraw = $_POST['withdraw_solde'];
+                $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $withdraw");
+                $requestSolde -> execute([$_SESSION['user']['id']]);
+                $solde = $requestSolde -> fetch();
+                }
+            }
+
+            $requestWithdraw = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = ?");
+            $requestWithdraw -> execute([$_SESSION['user']['id']]);
+            $soldeDeposite = $requestWithdraw -> fetch();
+
+            ?>
+    </div>
+    <div id="div_form_virement">
+    <form action="#" id="virement_form" method="POST">
+                <div class="input-field">
+                     <input name="virement_IBAN" type="text" placeholder="IBAN du destinataire" required>
+                 </div>
+
+                 <div class="input-field">
+                     <input name="virement_name" type="text" placeholder="Nom" required>
+                 </div>
+                 <div class="input-field">
+                     <input name="virement_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
+                 </div>
+                 <div class="input-field">
+                     <input name="virement_solde" type="text" placeholder="Sommes à virer" required>
+                 </div>
+            
+                 <div class="input-field button">
+                     <input type="submit" value="Virement" name="Virement">
+
+                 </div>
+             </form>
+             <?php 
+
+            $error = false;
+
+            if(isset($_POST['Virement'])) {
+                        
+                if(!$error){
+                    
+                $virement = $_POST['virement_solde'];
+                $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement");
+                $requestSolde1 -> execute([$_SESSION['user']['id']]);
+                $solde1 = $requestSolde1 -> fetch();
+
+                $requestSolde2 = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $virement");
+                $requestSolde2 -> execute([$_SESSION['user']['1']]);
+                $solde2 = $requestSolde2 -> fetch();
+                }
+            }
+
+            $requestVirement = $conn -> prepare("SELECT solde, currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = ?");
+            $requestVirement -> execute([$_SESSION['user']['id']]);
+            $soldeDeposite = $requestVirement -> fetch();
+
+            ?>
+             <div id="compte">
                 <div class="soldeCompte">
                     <p id="deposite" ><?=$soldeDeposite["solde"];?><?= $soldeDeposite[1];?></p>
                 </div>
             </div>
-
-    </div>
-    <div id="div_form_retirer">
-    <form action="actions/login.php" id="retirer_form" method="POST">
-                 <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Nom" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="passwordInscription" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Sommes à retirer" required>
-                 </div>
-            
-                 <div class="input-field button">
-                     <input type="submit" value="Retirer" name="Inscription">
-                 </div>
-             </form>
-    </div>
-    <div id="div_form_virement">
-    <form action="actions/login.php" id="virement_form" method="POST">
-                <div class="input-field">
-                     <input name="fullName" type="text" placeholder="IBAN du destinataire" required>
-                 </div>
-
-                 <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Nom" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="passwordInscription" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="fullName" type="text" placeholder="Sommes à virer" required>
-                 </div>
-            
-                 <div class="input-field button">
-                     <input type="submit" value="Virement" name="Inscription">
-
-                 </div>
-             </form>
     </div>
 
 </div>
