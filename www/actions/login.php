@@ -25,11 +25,14 @@ if(isset($_POST['Connexion'])) {
         $requete = $requeteStatment->fetch();
 
         if(!empty($requete)){
+            echo $requete['role'];
             if($requete['role'] == 1000 || $requete['role'] == 200){
                 $_SESSION['user'] = $requete;
                 header('Location: /?page=espaceAdmin');
                 exit(); 
-            }else if($requete['role'] == 1 || $requete['role'] == 0){      
+
+            }else if($requete['role'] == 1 || $requete['role'] == 0){    
+                $_SESSION['user'] = $requete;  
                 header('Location: /?page=accueil');
                 exit();
             }else if($requete['role'] == 10){
