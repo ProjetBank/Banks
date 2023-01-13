@@ -1,16 +1,41 @@
+<?php
 
- 
- <?php
-    include_once __DIR__ . "/../src/init.php";
+include_once __DIR__ . "/../src/init.php";
 
-    $page = 'login';
-    if (isset($_GET['page'])) {
-        if (in_array($_GET['page'], $pages)) {
-            $page = $_GET['page'];
-        }
+$pagecssautre ='';
+$pagecss ='';
+
+$page = 'espaceAdmin';
+if (isset($_GET['page'])){
+    if (in_array($_GET['page'], $pages)){
+        $page = $_GET['page'];
     }
 
-    include_once __DIR__ . "/../src/templates/pages/$page.php";
+}
+if ($page != 'accueil'){
+    $pagecss = 'autre';
+} else {
+    $pagecss = $page;
+}
 
-    require_once "../src/templates/template.php";
-    ?>
+if ($page == 'accueil'){
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/header_".$pagecss.".php";
+} elseif ($page == 'login'){
+
+} else {
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/header_".$pagecss.".php";
+}
+include_once __DIR__ . "/../src/templates/pages/$page.php";
+include_once __DIR__ . "/../src/templates/template.php";
+
+
+if ($page == 'accueil'){
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/footer_".$pagecss.".php";
+    
+} elseif ($page == 'login'){
+    
+}else {
+    include_once __DIR__ . "/../src/templates/partials/$pagecss/footer_".$pagecss.".php";
+}
+
+?>

@@ -1,13 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/login.css">
-    <title><?= $page_title; ?></title>
-    <?= $head_metas; ?>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$pagecss?>/header_<?=$pagecss?>.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$pagecss?>/<?=$page?>.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$pagecss?>/footer_<?=$pagecss?>.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../assets/css/<?=$page?>.css'>
+    <title> <?= $page_title;  ?></title>
 </head>
 
 <body>

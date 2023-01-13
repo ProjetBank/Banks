@@ -1,0 +1,66 @@
+/* Début Header */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+    list-style-type: none;
+}
+
+header{
+    display: flex;
+    background-color: rgb(28, 40, 75);
+    justify-content: space-around;
+    padding: 1rem 0;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    width: 30%;
+    margin-right: 5px;
+    background: white;
+}
+
+.header__logo{
+    margin-left: 50px;
+    color: white;
+    text-transform: uppercase;
+
+}
+
+.nav-list{
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: white;
+}
+
+.nav-item{
+    margin: 0 8px;
+    color: white;
+    list-style: none;
+}
+
+.nav__link{
+    padding: 10px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
