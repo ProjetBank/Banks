@@ -1,5 +1,4 @@
 <?php
-echo $_SESSION['user']['id'];
 $page_title =" Mes Transactions - JLF.com";
 
 ob_start()
@@ -69,14 +68,12 @@ ob_start()
                 if(isset($_POST['deposite_name']) && $_POST['deposite_name'] == $_SESSION['user']['Full_Name']){
                     $virement_name = $_POST['deposite_name'];
                 }else{
-                    echo 'name';
                     $error = true;
                 }
 
                 if(isset($_POST['deposite_password']) && hash('sha256', $_POST['deposite_password']) == $_SESSION['user']['password']){
                     $virement_password = $_POST['deposite_password'];
                 }else{
-                    echo 'password';
                     $error = true;
                 }
                           
@@ -121,14 +118,12 @@ ob_start()
                 if(isset($_POST['withdraw_name']) && $_POST['withdraw_name'] == $_SESSION['user']['Full_Name']){
                     $virement_name = $_POST['withdraw_name'];
                 }else{
-                    echo 'name';
                     $error = true;
                 }
 
                 if(isset($_POST['withdraw_password']) && hash('sha256', $_POST['withdraw_password']) == $_SESSION['user']['password']){
                     $virement_password = $_POST['withdraw_password'];
                 }else{
-                    echo 'password';
                     $error = true;
                 }
 
