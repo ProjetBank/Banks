@@ -38,10 +38,14 @@ ob_start();
                     <p><?= $allTransaction['id'];  ?></p>
                 </div>
                 <form method="POST" action="" id="operation_refu">
+                    <input type="hidden" name="id_destinataire" id="idUser2" value="<?=$allTransaction['id_destinataire'];?>">
+                    <input type="hidden" name="id_envoyeur" id="idUser2" value="<?=$allTransaction['id_envoyeur'];?>">
+                    <input type="hidden" name="Name1" id="idUser2" value="<?=$allTransaction['name_transaction'];?>">
                     <input type="hidden" name="idUser1" id="idUser1" value="<?=$allTransaction['id'];?>">
                     <input type="submit" name="buttonAcceptation" id="idUser1" value="Accepté">
                 </form>
                 <form method="POST" action="" id="operation_refu">
+                    <input type="hidden" name="Name2" id="idUser2" value="<?=$allTransaction['name_transaction'];?>">
                     <input type="hidden" name="idUser2" id="idUser2" value="<?=$allTransaction['id'];?>">
                     <input type="submit" name="buttonRefus" id="idUser2" value="Refusé">
                 </form>
@@ -60,8 +64,22 @@ if(isset($_POST['buttonAcceptation'])){
     $updateUsers = $conn -> prepare($update);
     $updateUsers -> execute([$_POST['idUser1']]);
 
-    header('Location: /?page=transactions');
-    exit();
+    if($_POST['Name1'] != "deposit" && $_POST['Name2'] != "withdraw"){
+        $virement = $_POST['virement_solde'];
+
+        $requestSolde1 = $conn -> prepare('UPDATE bankaccounts SET solde = solde - ? WHERE id_user = ?');
+        $requestSolde1 -> execute([$_POST['montant'], $_POST['id_envoyeur']]);
+        $solde1 = $requestSolde1 -> fetch();
+
+        $requestSolde2 = $conn -> prepare('UPDATE bankaccounts SET solde = solde + ? WHERE id_user = ?');
+        $requestSolde2 -> execute([$_POST['montant'], $_POST['id_destinataire']]);
+        $solde2 = $requestSolde2 -> fetch();
+
+        header('Location: /?page=transactions');
+        exit();
+    }
+
+    
 }
 
 if(isset($_POST['buttonRefus'])){

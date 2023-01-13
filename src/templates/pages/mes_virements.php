@@ -157,17 +157,10 @@ ob_start()
 
                         
                 if(!$error){
-                    
-                $virement = $_POST['virement_solde'];
-                $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement WHERE id_user = ?");
-                $requestSolde1 -> execute([$_SESSION['user']['id']]);
-                $solde1 = $requestSolde1 -> fetch();
 
-                $requestSolde2 = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $virement WHERE id_user = $iban");
-                $requestSolde2 -> execute([$_SESSION['user']['1']]);
-                $solde2 = $requestSolde2 -> fetch();
+                
 
-                $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date) VALUES (?, ?, ?, ?, NOW())');
+                $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date, statut) VALUES (?, ?, ?, ?, NOW(), 0)');
                 $statement -> execute([$_SESSION['user']['id'], $iban, $virement, $transaction_name]);
                 $statement->execute();
                 }
