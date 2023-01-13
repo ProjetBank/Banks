@@ -26,6 +26,13 @@ ob_start();
 
         while($allTransaction = $transaction -> fetch()){
             ?>
+                <div class="TableUsers">
+                    <h3 class="tableTitleScores">Date</h3>
+                    <h3 class="tableTitleScores">Type opération</h3>
+                    <h3 class="tableTitleScores">Montant</h3>
+                    <h3 class="tableTitleScores">ID Envoyeur</h3>
+                    <h3 class="tableTitleScores">Opération</h3>
+                </div>
             <div id="transactions">
                 <div class="transactionDate">
                     <p><?= date_create($allTransaction['date'])->format('d/m/Y');  ?></p>
@@ -34,9 +41,12 @@ ob_start();
                     <p><?= $allTransaction['name_transaction'];  ?></p>
                 </div>
                 <div class="transactionInfos">
-                    <p><?= $allTransaction['montant'];  ?></p>
-                    <p><?= $allTransaction['id'];  ?></p>
+                        <p><?= $allTransaction['montant'];  ?></p>
+                    <div class="transactionID">
+                        <p><?= $allTransaction['id_envoyeur'];  ?></p>
+                    </div>
                 </div>
+                <div class="ope">
                 <form method="POST" action="" id="operation_refu">
                     <input type="hidden" name="id_destinataire" id="idUser2" value="<?=$allTransaction['id_destinataire'];?>">
                     <input type="hidden" name="id_envoyeur" id="idUser2" value="<?=$allTransaction['id_envoyeur'];?>">
@@ -50,6 +60,7 @@ ob_start();
                     <input type="hidden" name="idUser2" id="idUser2" value="<?=$allTransaction['id'];?>">
                     <input type="submit" name="buttonRefus" id="idUser2" value="Refusé">
                 </form>
+            </div>
             </div>
             <?php
         }
