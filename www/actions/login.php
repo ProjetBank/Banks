@@ -39,7 +39,13 @@ if(isset($_POST['Connexion'])) {
                 header('Location: /?page=espaceClient');
                 exit();
             }
+        }else{
+            header('Location: /?page=login');
+            exit();
         }
+    }else{
+        header('Location: /?page=login');
+        exit();
     }
 }
 
