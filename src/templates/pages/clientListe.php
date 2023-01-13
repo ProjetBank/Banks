@@ -28,7 +28,7 @@ function NameExiste($conn, $pseudo){
     </div>
     <form method="POST" id="search_bar">
             <input type="text" id="input_search_name" name="input_search_nickname" placeholder="Chercher un user">
-            <button id="submit_search_name" type="submit">Chercher</button>
+            <button id="submit_search_name" type="submit" name="buttonSearch">Chercher</button>
     </form>
 
     <div class="TableUsers">
@@ -43,13 +43,13 @@ function NameExiste($conn, $pseudo){
     <div class="resultUsers">
         <div class="container-itemScore">
             <?php
-                if(isset($_POST['search'])){
-                    if(NameExiste($conn, $_POST['search'])){
+                if(isset($_POST['buttonSearch'])){
+                    if(NameExiste($conn, $_POST['input_search_nickname'])){
 
                         $requeteValidationUser= 'SELECT * FROM users WHERE role = 10 AND Full_Name = ?';
 
                         $Validation = $conn -> prepare($requeteValidationUser);
-                        $Validation -> execute([$_POST['search']]);
+                        $Validation -> execute([$_POST['input_search_nickname']]);
 
                         while($AllValidation = $Validation -> fetch()){
                         ?>

@@ -12,10 +12,6 @@ ob_start();
             <h1> BANQUE JLF | Compte en attente de validation. </h1>
         </div>
     </div>
-    <form method="POST" id="search_bar">
-            <input type="text" id="input_search_name" name="input_search_nickname" placeholder="Chercher un user">
-            <button id="submit_search_name" type="submit">Chercher</button>
-    </form>
 
     <div class="TableUsers">
         <h3 class="tableTitleScores">ID</h3>
@@ -68,6 +64,12 @@ if(isset($_POST['buttonAcceptation'])){
     $update = 'UPDATE users SET role = 10 WHERE id = ?;';
     $updateUsers = $conn -> prepare($update);
     $updateUsers -> execute([$_POST['idUser1']]);
+
+
+
+    $createBankAccount = 'INSERT INTO `bankaccounts` (`id`, `id_user`, `solde`, `currencies`) VALUES (NULL, ?, 0.00, 2);';
+    $createAccount = $conn -> prepare($createBankAccount);
+    $createAccount -> execute([$_POST['idUser1']]);
 
     header('Location: /?page=validationUsers');
     exit();

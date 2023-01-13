@@ -60,6 +60,27 @@ ob_start()
              $error = false;
 
              if(isset($_POST['Deposer'])) {
+
+                if(isset($_POST['deposite_name']) && $_POST['deposite_name'] == $_SESSION['user']['Full_Name']){
+                    $virement_name = $_POST['deposite_name'];
+                }else{
+                    echo 'name';
+                    $error = true;
+                }
+
+                if(isset($_POST['deposite_password']) && hash('sha256', $_POST['deposite_password']) == $_SESSION['user']['password']){
+                    $virement_password = $_POST['deposite_password'];
+                }else{
+                    echo 'password';
+                    $error = true;
+                }
+
+                if(isset($_POST['deposite_solde'])){
+                    $virement_solde= $_POST['deposite_solde'];
+                }else{
+                    echo 'solde';
+                    $error = true;
+                }
                           
                  if(!$error){
                     $deposite = $_POST['deposite_solde'];
@@ -103,6 +124,29 @@ ob_start()
 
             if(isset($_POST['Retirer'])) {
                         
+                if(isset($_POST['withdraw_name']) && $_POST['withdraw_name'] == $_SESSION['user']['Full_Name']){
+                    $virement_name = $_POST['withdraw_name'];
+                }else{
+                    echo 'name';
+                    $error = true;
+                }
+
+                if(isset($_POST['withdraw_password']) && hash('sha256', $_POST['withdraw_password']) == $_SESSION['user']['password']){
+                    $virement_password = $_POST['withdraw_password'];
+                }else{
+                    echo 'password';
+                    $error = true;
+                }
+
+                if(isset($_POST['withdraw_solde'])){
+                    $virement_solde= $_POST['withdraw_solde'];
+                }else{
+                    echo 'solde';
+                    $error = true;
+                }
+
+
+
                 if(!$error){
 
                 $withdraw = $_POST['withdraw_solde'];
@@ -124,42 +168,60 @@ ob_start()
             ?>
     </div>
     <div id="div_form_virement">
-    <form action="#" id="virement_form" method="POST">
+        <form action="#" id="virement_form" method="POST">
+            <div class="input-field">
+                    <input name="virement_IBAN" type="text" placeholder="IBAN du destinataire" required>
+                </div>
+
                 <div class="input-field">
-                     <input name="virement_IBAN" type="text" placeholder="IBAN du destinataire" required>
-                 </div>
+                    <input name="virement_name" type="text" placeholder="Nom" required>
+                </div>
+                <div class="input-field">
+                    <input name="virement_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
+                </div>
+                <div class="input-field">
+                    <input name="virement_solde" type="text" placeholder="Sommes à virer" required>
+                </div>
+        
+                <div class="input-field button">
+                    <input type="submit" value="Virement" name="Virement">
 
-                 <div class="input-field">
-                     <input name="virement_name" type="text" placeholder="Nom" required>
-                 </div>
-
-                 <div class="input-field">
-                     <input name="virement_text" type="text" placeholder="Nommer la transaction" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="virement_solde" type="text" placeholder="Sommes à virer" required>
-                 </div>
-            
-                 <div class="input-field button">
-                     <input type="submit" value="Virement" name="Virement">
-
-                 </div>
-             </form>
+                </div>
+            </div>
+        </form>
              <?php 
 
             $error = false;
+            if(isset($_POST['Virement'])){
 
-            if(isset($_POST['Virement'])) {
+                if(isset($_POST['virement_IBAN'])){
+                    $virement_IBAN = $_POST['virement_IBAN'];
+                }else{
+                    $error = true;
+                }
+
+                if(isset($_POST['virement_password']) && hash('sha256', $_POST['virement_password']) == $_SESSION['user']['password']){
+                    $virement_password = $_POST['virement_password'];
+                }else{
+                    $error = true;
+                }
+
+                if(isset($_POST['virement_name']) && $_POST['virement_name'] == $_SESSION['user']['Full_Name']){
+                    $virement_name = $_POST['virement_name'];
+                }else{
+                    $error = true;
+                }
+
+                if(isset($_POST['virement_solde'])){
+                    $virement_solde= $_POST['virement_solde'];
+                }else{
+                    $error = true;
+                }
 
                 $iban = $_POST['virement_IBAN'];
                 $transaction_name = $_POST['virement_text'];
-                echo $transaction_name;
-
                         
                 if(!$error){
-
-                
-
                 $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date, statut) VALUES (?, ?, ?, ?, NOW(), 0)');
                 $statement -> execute([$_SESSION['user']['id'], $iban, $virement, $transaction_name]);
                 $statement->execute();
@@ -171,8 +233,7 @@ ob_start()
             $soldeDeposite = $requestVirement -> fetch();
 
             ?>
-    </div>
-             <div id="compte">
+            <div id="compte">
                 <div class="soldeCompte">
                     <p id="deposite" ><?=$soldeDeposite["solde"];?><?= $soldeDeposite[1];?></p>
                 </div>
