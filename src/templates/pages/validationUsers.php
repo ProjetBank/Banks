@@ -12,10 +12,6 @@ ob_start();
             <h1> BANQUE JLF | Compte en attente de validation. </h1>
         </div>
     </div>
-    <form method="POST" id="search_bar">
-            <input type="text" id="input_search_name" name="input_search_nickname" placeholder="Chercher un user">
-            <button id="submit_search_name" type="submit">Chercher</button>
-    </form>
 
     <div class="TableUsers">
         <h3 class="tableTitleScores">ID</h3>
