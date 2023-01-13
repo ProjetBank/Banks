@@ -67,7 +67,7 @@ ob_start()
                  if(!$error){
                     $deposite = $_POST['deposite_solde'];
                     
-                    $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $deposite");
+                    $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $deposite WHERE id_user = ?");
                     $requestSolde -> execute([$_SESSION['user']['id']]);
                     $solde = $requestSolde -> fetch();
                  }
@@ -106,7 +106,7 @@ ob_start()
                 if(!$error){
 
                 $withdraw = $_POST['withdraw_solde'];
-                $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $withdraw");
+                $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $withdraw WHERE id_user = ?");
                 $requestSolde -> execute([$_SESSION['user']['id']]);
                 $solde = $requestSolde -> fetch();
                 }
@@ -144,15 +144,17 @@ ob_start()
             $error = false;
 
             if(isset($_POST['Virement'])) {
+
+                $iban = $_POST['virement_IBAN'];
                         
                 if(!$error){
                     
                 $virement = $_POST['virement_solde'];
-                $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement");
+                $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement WHERE id_user = ?");
                 $requestSolde1 -> execute([$_SESSION['user']['id']]);
                 $solde1 = $requestSolde1 -> fetch();
 
-                $requestSolde2 = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $virement");
+                $requestSolde2 = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $virement WHERE id_user = $iban");
                 $requestSolde2 -> execute([$_SESSION['user']['1']]);
                 $solde2 = $requestSolde2 -> fetch();
                 }

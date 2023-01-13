@@ -6,6 +6,8 @@ $page_title = "Espace Client - Bank-JLF.com";
 ob_start();
 
 ?>
+<?= $_SESSION['user']['id'] ?>
+
 <div id="accueil_body1">
     <div id="accueil_title">
         <h1> BANQUE JLF | Mon Espace </h1>
