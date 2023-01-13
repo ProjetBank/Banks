@@ -41,12 +41,9 @@ ob_start()
                  <div class="input-field">
                      <input name="deposite_date" type="text" placeholder="Date d'expiration" required>
                  </div>
-                 
+            
                  <div class="input-field">
                      <input name="deposite_name" type="text" placeholder="Nom" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="deposite_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
                  </div>
                  <div class="input-field">
                      <input value="0" name="deposite_solde" type="text" placeholder="Sommes à deposer" required>
@@ -66,10 +63,16 @@ ob_start()
                           
                  if(!$error){
                     $deposite = $_POST['deposite_solde'];
-                    
+                    $id = [$_SESSION['user']['id']];
                     $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $deposite WHERE id_user = ?");
                     $requestSolde -> execute([$_SESSION['user']['id']]);
                     $solde = $requestSolde -> fetch();
+
+                    $statement = $conn->prepare("INSERT INTO deposits (montant, id_compte, id_admin, statut) VALUES ($deposite, ?, 1, 0)");
+                    $statement -> execute([$_SESSION['user']['id']]);
+                    $statement->execute();
+
+
                  }
              }
 
@@ -85,9 +88,6 @@ ob_start()
     <form action="#" id="retirer_form" method="POST">
                  <div class="input-field">
                      <input name="withdraw_name" type="text" placeholder="Nom" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="withdraw_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
                  </div>
                  <div class="input-field">
                      <input name="withdraw_solde" type="text" placeholder="Sommes à retirer" required>
@@ -109,6 +109,11 @@ ob_start()
                 $requestSolde = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $withdraw WHERE id_user = ?");
                 $requestSolde -> execute([$_SESSION['user']['id']]);
                 $solde = $requestSolde -> fetch();
+
+
+                $statement = $conn->prepare("INSERT INTO withdrawals (id_compte, montant, id_admin, statut) VALUES (?,$withdraw, 1, 0)");
+                $statement -> execute([$_SESSION['user']['id']]);
+                $statement->execute();
                 }
             }
 
@@ -127,8 +132,9 @@ ob_start()
                  <div class="input-field">
                      <input name="virement_name" type="text" placeholder="Nom" required>
                  </div>
+
                  <div class="input-field">
-                     <input name="virement_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
+                     <input name="virement_text" type="text" placeholder="Nommer la transaction" required>
                  </div>
                  <div class="input-field">
                      <input name="virement_solde" type="text" placeholder="Sommes à virer" required>
@@ -146,10 +152,13 @@ ob_start()
             if(isset($_POST['Virement'])) {
 
                 $iban = $_POST['virement_IBAN'];
+                $transaction_name = $_POST['virement_text'];
+
                         
                 if(!$error){
                     
                 $virement = $_POST['virement_solde'];
+                $date = date('d-m-y h:i:s');
                 $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement WHERE id_user = ?");
                 $requestSolde1 -> execute([$_SESSION['user']['id']]);
                 $solde1 = $requestSolde1 -> fetch();
@@ -157,6 +166,10 @@ ob_start()
                 $requestSolde2 = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $virement WHERE id_user = $iban");
                 $requestSolde2 -> execute([$_SESSION['user']['1']]);
                 $solde2 = $requestSolde2 -> fetch();
+
+                $statement = $conn->prepare("INSERT INTO transactions (id_envoyeur, id_destinataire, montant) VALUES (?, $iban, $virement)");
+                $statement -> execute([$_SESSION['user']['id']]);
+                $statement->execute();
                 }
             }
 
