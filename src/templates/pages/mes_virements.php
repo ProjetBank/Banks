@@ -34,21 +34,13 @@ ob_start()
     <div id="div_form_deposer">
     <form action="#" id="deposer_form" method="POST">
                  <div class="input-field">
-                     <input name="deposite_cb" type="text" placeholder="Numéro de Carte Bleue" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="deposite_crypt" type="text" placeholder="Cryptogram" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="deposite_date" type="text" placeholder="Date d'expiration" required>
+                     <input name="deposite_name" type="text" placeholder="Nom" required>
                  </div>
                  <div class="input-field">
                     <input name="deposite_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
                 </div>
             
-                 <div class="input-field">
-                     <input name="deposite_name" type="text" placeholder="Nom" required>
-                 </div>
+                 
                  <div class="input-field">
                      <input value="0" name="deposite_solde" type="text" placeholder="Sommes à deposer" required>
                  </div>

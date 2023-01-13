@@ -1,0 +1,16 @@
+body{
+    background-color: #B4CDED;
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+#accueil_title{
+    text-align: center;
+}
+.form .login-signup{
+    margin-top: 30px;
+    text-align: center;
+    justify-content: center;
+}

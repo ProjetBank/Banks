@@ -1,5 +1,5 @@
 <?php
-$page_title = "Espace Admin - Bank-JLF.com";
+$page_title = "Espace Fondateur - Bank-JLF.com";
 
 // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
 ob_start();
@@ -11,7 +11,7 @@ ob_start();
 
 <div id="accueil_body1">
 <div id="accueil_title">
-        <h1> BANQUE JLF | Espace Admins </h1>
+        <h1> BANQUE JLF | Espace Fondateur </h1>
     </div>
     <div id="accueil_image1">
         <img src="../assets/imgs/accueil_1.jpg" id="image1">

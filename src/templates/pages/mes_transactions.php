@@ -11,16 +11,21 @@ ob_start()
     </div>
 
 
-    <h2>Vos transactions approuvé</h2>
+    <h2>Vos 10 dernières transactions approuvées</h2>
 
     <div class="listeTransaction">
         <?php 
         $requestAllTransaction= 'SELECT name_transaction, montant, date
         FROM transactions
-        WHERE statut = 1';
+        WHERE statut = 1
+        LIMIT 10' ;
         
         $transaction = $conn -> prepare($requestAllTransaction);
         $transaction -> execute([$_SESSION['user']['id']]);
+
+        $currencie = $conn -> prepare('SELECT currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = ?');
+        $currencie -> execute([$_SESSION['user']['id']]);
+        $symbole= $currencie -> fetch();
 
         while($allTransaction = $transaction -> fetch()){
             ?>
@@ -32,7 +37,8 @@ ob_start()
                     <p><?= $allTransaction['name_transaction'];  ?></p>
                 </div>
                 <div class="transactionInfos">
-                    <p><?= $allTransaction['montant'];  ?></p>
+                    <p><?= $allTransaction['montant'].$symbole[0];  ?></p>
+                
                 </div>
             </div>
             <?php
@@ -62,6 +68,10 @@ ob_start()
         $transaction = $conn -> prepare($requestAllTransaction);
         $transaction -> execute([$_SESSION['user']['id']]);
 
+        $currencie = $conn -> prepare('SELECT currencies.symbole FROM Bankaccounts INNER JOIN currencies ON bankaccounts.currencies = currencies.id  WHERE id_user = ?');
+        $currencie -> execute([$_SESSION['user']['id']]);
+        $symbole= $currencie -> fetch();
+
         while($allTransaction = $transaction -> fetch()){
             ?>
             <div id="transactions">
@@ -72,7 +82,7 @@ ob_start()
                     <p><?= $allTransaction['name_transaction'];  ?></p>
                 </div>
                 <div class="transactionInfos">
-                    <p><?= $allTransaction['montant'];  ?></p>
+                    <p><?= $allTransaction['montant'].$symbole[0];  ?></p>
                 </div>
             </div>
             <?php

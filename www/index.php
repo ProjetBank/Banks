@@ -14,9 +14,12 @@ if (isset($_GET['page'])){
 }
 if ($page == 'accueil'){
     $pagecss = 'accueil';
-} elseif ($page == 'espaceAdmin' || $page == 'clientListe' || $page == 'validationUsers' || $page == 'transactions'){
+} elseif ($page == 'espaceAdmin' || $page == 'clientListe' || $page == 'validationUsers' || $page == 'transactions' || $page == 'clientListe'){
     $pagecss = 'espaceAdmin';
-} else {
+} elseif ($page == 'espaceFondateur' || $page == 'initialisation') {
+    $pagecss = 'espaceFondateur';
+}
+else {
     $pagecss = 'autre';
 }
 

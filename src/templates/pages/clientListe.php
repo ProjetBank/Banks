@@ -122,6 +122,19 @@ if(isset($_POST['buttonBan'])){
     $update = 'UPDATE users
     SET role = 0
     WHERE id = ?;';
+
+    $deleteTransaction = $conn -> prepare('DELETE FROM transactions WHERE id_envoyeur = ?');
+    $deleteTransaction ->execute([$_POST['idUser']]);
+
+    $deleteDepo = $conn -> prepare('DELETE FROM deposits WHERE id_compte = ?');
+    $deleteDepo ->execute([$_POST['idUser']]);
+
+    $deletewithdrawals = $conn -> prepare('DELETE FROM withdrawals WHERE id_compte = ?');
+    $deletewithdrawals ->execute([$_POST['idUser']]);
+
+    $deleteBA = $conn -> prepare('DELETE FROM bankaccounts WHERE id_user = ?');
+    $deleteBA ->execute([$_POST['idUser']]);
+
     $updateUsers = $conn -> prepare($update);
     $updateUsers -> execute([$_POST['idUser']]);
 
