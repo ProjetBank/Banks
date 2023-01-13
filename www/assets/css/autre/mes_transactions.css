@@ -1,0 +1,41 @@
+.listeTransaction{
+    display: flex;
+    flex-direction: column;
+}
+
+.transactionDate{
+    height: 30px;
+}
+
+.transactionInfos{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-left: 75px;
+
+}
+#transactions{
+    display: flex;
+    border: 2px solid black;
+    border-radius: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 2%;
+    justify-content: space-around;
+}
+
+
+body{
+    background-color: #B4CDED;
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+#accueil_title{
+    text-align: center;
+}
+

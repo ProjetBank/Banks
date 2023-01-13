@@ -1,0 +1,43 @@
+/*Css de la partie footer (début)*/
+
+footer {
+    background: rgb(2,0,36);
+    background: linear-gradient(145deg, rgba(2,0,36,1) 0%, rgba(18,18,113,1) 53%, rgba(21,63,218,1) 100%);
+    color: white;
+}
+
+#not_credit {
+    display:flex;
+    justify-content: space-around;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#credit{
+    padding-top: 7%;
+    padding-bottom: 1%;
+    padding-left: 4%;
+}
+
+#reseaux_sociaux {
+    display: flex;
+    align-items: center;
+}
+
+.bouton_reseaux_sociaux {
+    border: 2px solid #120D29;
+}
+
+ul li {
+    list-style-type: square;
+}
+
+.text_orange {
+    color: orange;
+}
+
+.gris {
+    color: whitesmoke;
+}
+
+/*Css de la partie footer (fin)*/

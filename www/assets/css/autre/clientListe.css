@@ -1,0 +1,79 @@
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px;
+}
+
+main{
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+h1{
+    text-align: center;
+}
+
+.TableUsers {
+    /* Positionnement de l'en-tête */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 15px 10px;
+    
+}
+
+.TableUsers , p{
+    /* Ajoue d'une bordure interne à l'en-tête */
+    padding: 0 15px;
+}
+
+
+/*Autre section*/
+
+.resultUsers{
+    /* Positionnement des resultat en colonne */
+    display: grid;
+    grid-column: 1 / -1;
+}
+
+.container-itemScore{
+    /* Positionnement des resultat */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    padding: 15px 10px;
+}
+
+
+
+
+.SearchBarScores{
+    /* Positionnement de la barre de recherche */
+    display: flex;
+    align-items: center;
+    max-width: 450px;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.SearchBarScores img{
+    /* Positionnement de l'image de la barre de recherche */
+    width: 20px;
+    position: relative;
+    top: 2px;
+}
+
+.SearchBarScores input{
+    /* Modification de la barre de recherche */
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    outline: 0;
+    border: 0;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 15px;
+}
