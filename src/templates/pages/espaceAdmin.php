@@ -7,15 +7,9 @@ $requestSolde = $conn -> prepare("SELECT role FROM users WHERE id = 8");
 $requestSolde -> execute();
 $roleadmin = $requestSolde -> fetch();
 
-if($roleadmin['role'] != 1000 && $roleadmin['role'] != 200){
-    header('Location: /?page=accueil');
-    exit();
-}
-
 //if($_SERVER['PHP_SELF'] )
 ?>
 <?= $_SESSION['user']['id'] ?>
-<?= $roleadmin['role'] ?>
 
 
 

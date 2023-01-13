@@ -63,6 +63,27 @@ ob_start()
              $error = false;
 
              if(isset($_POST['Deposer'])) {
+
+                if(isset($_POST['deposite_name']) && $_POST['deposite_name'] == $_SESSION['user']['Full_Name']){
+                    $virement_name = $_POST['deposite_name'];
+                }else{
+                    echo 'name';
+                    $error = true;
+                }
+
+                if(isset($_POST['deposite_password']) && hash('sha256', $_POST['deposite_password']) == $_SESSION['user']['password']){
+                    $virement_password = $_POST['deposite_password'];
+                }else{
+                    echo 'password';
+                    $error = true;
+                }
+
+                if(isset($_POST['deposite_solde'])){
+                    $virement_solde= $_POST['deposite_solde'];
+                }else{
+                    echo 'solde';
+                    $error = true;
+                }
                           
                  if(!$error){
                     $deposite = $_POST['deposite_solde'];
@@ -103,6 +124,29 @@ ob_start()
 
             if(isset($_POST['Retirer'])) {
                         
+                if(isset($_POST['withdraw_name']) && $_POST['withdraw_name'] == $_SESSION['user']['Full_Name']){
+                    $virement_name = $_POST['withdraw_name'];
+                }else{
+                    echo 'name';
+                    $error = true;
+                }
+
+                if(isset($_POST['withdraw_password']) && hash('sha256', $_POST['withdraw_password']) == $_SESSION['user']['password']){
+                    $virement_password = $_POST['withdraw_password'];
+                }else{
+                    echo 'password';
+                    $error = true;
+                }
+
+                if(isset($_POST['withdraw_solde'])){
+                    $virement_solde= $_POST['withdraw_solde'];
+                }else{
+                    echo 'solde';
+                    $error = true;
+                }
+
+
+
                 if(!$error){
 
                 $withdraw = $_POST['withdraw_solde'];
@@ -119,44 +163,69 @@ ob_start()
             ?>
     </div>
     <div id="div_form_virement">
-    <form action="#" id="virement_form" method="POST">
+        <form action="#" id="virement_form" method="POST">
+            <div class="input-field">
+                    <input name="virement_IBAN" type="text" placeholder="IBAN du destinataire" required>
+                </div>
+
                 <div class="input-field">
-                     <input name="virement_IBAN" type="text" placeholder="IBAN du destinataire" required>
-                 </div>
+                    <input name="virement_name" type="text" placeholder="Nom" required>
+                </div>
+                <div class="input-field">
+                    <input name="virement_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
+                </div>
+                <div class="input-field">
+                    <input name="virement_solde" type="text" placeholder="Sommes à virer" required>
+                </div>
+        
+                <div class="input-field button">
+                    <input type="submit" value="Virement" name="Virement">
 
-                 <div class="input-field">
-                     <input name="virement_name" type="text" placeholder="Nom" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="virement_password" type="password" id="password" name="password" class="password" placeholder="Mot de passe" required>
-                 </div>
-                 <div class="input-field">
-                     <input name="virement_solde" type="text" placeholder="Sommes à virer" required>
-                 </div>
-            
-                 <div class="input-field button">
-                     <input type="submit" value="Virement" name="Virement">
-
-                 </div>
-             </form>
+                </div>
+            </div>
+        </form>
              <?php 
 
             $error = false;
+            if(isset($_POST['Virement'])){
 
-            if(isset($_POST['Virement'])) {
+                if(isset($_POST['virement_IBAN'])){
+                    $virement_IBAN = $_POST['virement_IBAN'];
+                }else{
+                    $error = true;
+                }
 
-                $iban = $_POST['virement_IBAN'];
-                        
+                if(isset($_POST['virement_password']) && hash('sha256', $_POST['virement_password']) == $_SESSION['user']['password']){
+                    $virement_password = $_POST['virement_password'];
+                }else{
+                    $error = true;
+                }
+
+                if(isset($_POST['virement_name']) && $_POST['virement_name'] == $_SESSION['user']['Full_Name']){
+                    $virement_name = $_POST['virement_name'];
+                }else{
+                    $error = true;
+                }
+
+                if(isset($_POST['virement_solde'])){
+                    $virement_solde= $_POST['virement_solde'];
+                }else{
+                    $error = true;
+                }
+
                 if(!$error){
                     
-                $virement = $_POST['virement_solde'];
-                $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement WHERE id_user = ?");
-                $requestSolde1 -> execute([$_SESSION['user']['id']]);
-                $solde1 = $requestSolde1 -> fetch();
+                    $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement_solde WHERE id_user = ?");
+                    $requestSolde1 -> execute([$_SESSION['user']['id']]);
+                    $solde1 = $requestSolde1 -> fetch();
 
-                $requestSolde2 = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $virement WHERE id_user = $iban");
-                $requestSolde2 -> execute([$_SESSION['user']['1']]);
-                $solde2 = $requestSolde2 -> fetch();
+                    $requestSolde3 = $conn -> prepare("SELECT * FROM users WHERE IBAN = ?");
+                    $requestSolde3 -> execute([$_POST['virement_IBAN']]);
+                    $solde3 = $requestSolde3 -> fetch();
+
+                    $requestSolde2 = $conn -> prepare("UPDATE bankaccounts SET solde = solde + $virement_solde WHERE id_user = ?");
+                    $requestSolde2 -> execute([$solde3['id']]);
+                    $solde2 = $requestSolde2 -> fetch();
                 }
             }
 
@@ -165,7 +234,7 @@ ob_start()
             $soldeDeposite = $requestVirement -> fetch();
 
             ?>
-             <div id="compte">
+            <div id="compte">
                 <div class="soldeCompte">
                     <p id="deposite" ><?=$soldeDeposite["solde"];?><?= $soldeDeposite[1];?></p>
                 </div>

@@ -65,6 +65,12 @@ if(isset($_POST['buttonAcceptation'])){
     $updateUsers = $conn -> prepare($update);
     $updateUsers -> execute([$_POST['idUser1']]);
 
+
+
+    $createBankAccount = 'INSERT INTO `bankaccounts` (`id`, `id_user`, `solde`, `currencies`) VALUES (NULL, ?, 0.00, 2);';
+    $createAccount = $conn -> prepare($createBankAccount);
+    $createAccount -> execute([$_POST['idUser1']]);
+
     header('Location: /?page=validationUsers');
     exit();
 }
