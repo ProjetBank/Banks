@@ -36,3 +36,14 @@ body{
     display: flex;
     flex: 1;
 }
+
+#operation_auto{
+    margin-bottom: 0%;
+    padding-top: 0%;
+}
+#idUser1{
+    background-color: rgb(35, 228, 35);
+}
+#idUser2{
+    background-color: rgb(250, 82, 82);
+}

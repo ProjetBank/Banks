@@ -95,7 +95,7 @@ if(isset($_POST['Inscription'])){
     if(!$error){
         $new_mdp= hash('sha256',$passwordInscription);
 
-        $statement = $conn->prepare('INSERT INTO users (IBAN, Full_Name, phone, email, password, role) VALUES ("FR002",?, ?, ?, ?, 1)');
+        $statement = $conn->prepare('INSERT INTO users (Full_Name, phone, email, password, role) VALUES (?, ?, ?, ?, 1)');
         $statement->execute([$pseudo, $phone, $emailInscription, $new_mdp]);
 
         header('Location: /?page=login');
