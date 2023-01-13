@@ -81,7 +81,6 @@ ob_start()
                     $deposite = $_POST['deposite_solde'];
                     $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date, statut) VALUES (?, ?, ?, "deposit", NOW(), 0)');
                     $statement -> execute([$_SESSION['user']['id'],$_SESSION['user']['id'], $deposite]);
-                    $statement->execute();
                  }
              }
 
@@ -131,10 +130,9 @@ ob_start()
 
                 if(!$error){
 
-                $withdraw = $_POST['withdraw_solde'];
-                $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date, statut) VALUES (?, ?, ?, "withdraw", NOW(), 0)');
-                $statement -> execute([$_SESSION['user']['id'],$_SESSION['user']['id'], $withdraw]);
-                $statement->execute();
+                    $withdraw = $_POST['withdraw_solde'];
+                    $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date, statut) VALUES (?, ?, ?, "withdraw", NOW(), 0)');
+                    $statement -> execute([$_SESSION['user']['id'],$_SESSION['user']['id'], $withdraw]);
                 }
             }
 
@@ -203,9 +201,8 @@ ob_start()
                 $transaction_name = $_POST['virement_text'];
                         
                 if(!$error){
-                $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date, statut) VALUES (?, ?, ?, ?, NOW(), 0)');
-                $statement -> execute([$_SESSION['user']['id'], $virement_IBAN, $virement_solde, $transaction_name]);
-                $statement->execute();
+                    $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date, statut) VALUES (?, ?, ?, ?, NOW(), 0)');
+                    $statement -> execute([$_SESSION['user']['id'], $virement_IBAN, $virement_solde, $transaction_name]);
                 }
             }
 
