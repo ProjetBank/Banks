@@ -20,8 +20,8 @@
     border-radius: 30px;
     margin-left: 20%;
     margin-right: 20%;
-    margin-bottom: 10%;
-    padding-left: 10%;
+    margin-bottom: 2%;
+    justify-content: space-around;
 }
 
 
@@ -39,24 +39,3 @@ body{
     text-align: center;
 }
 
-#accueil_body2{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-#body2_title{
-    text-align: center;
-}
-#accueil_body3{
-    display: flex;
-}
-#body3_1{
-    text-align: center;
-    display: flex;
-    flex: 1;
-}
-#body3_2{
-    text-align: center;
-    display: flex;
-    flex: 1;
-}

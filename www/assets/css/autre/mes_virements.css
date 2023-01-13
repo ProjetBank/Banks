@@ -65,24 +65,10 @@ body{
     text-align: center;
 }
 
-#accueil_body2{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+#virement_form{
+    
 }
-#body2_title{
-    text-align: center;
-}
-#accueil_body3{
+#div_form_virement,#div_form_deposer,#div_form_retirer{
+    justify-content: center;
     display: flex;
-}
-#body3_1{
-    text-align: center;
-    display: flex;
-    flex: 1;
-}
-#body3_2{
-    text-align: center;
-    display: flex;
-    flex: 1;
 }

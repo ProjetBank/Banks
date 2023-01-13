@@ -153,12 +153,12 @@ ob_start()
 
                 $iban = $_POST['virement_IBAN'];
                 $transaction_name = $_POST['virement_text'];
+                echo $transaction_name;
 
                         
                 if(!$error){
                     
                 $virement = $_POST['virement_solde'];
-                $date = date('d-m-y h:i:s');
                 $requestSolde1 = $conn -> prepare("UPDATE bankaccounts SET solde = solde - $virement WHERE id_user = ?");
                 $requestSolde1 -> execute([$_SESSION['user']['id']]);
                 $solde1 = $requestSolde1 -> fetch();
@@ -167,8 +167,8 @@ ob_start()
                 $requestSolde2 -> execute([$_SESSION['user']['1']]);
                 $solde2 = $requestSolde2 -> fetch();
 
-                $statement = $conn->prepare("INSERT INTO transactions (id_envoyeur, id_destinataire, montant) VALUES (?, $iban, $virement)");
-                $statement -> execute([$_SESSION['user']['id']]);
+                $statement = $conn->prepare('INSERT INTO transactions (id_envoyeur, id_destinataire, montant, name_transaction, date) VALUES (?, ?, ?, ?, NOW())');
+                $statement -> execute([$_SESSION['user']['id'], $iban, $virement, $transaction_name]);
                 $statement->execute();
                 }
             }
@@ -178,12 +178,12 @@ ob_start()
             $soldeDeposite = $requestVirement -> fetch();
 
             ?>
+    </div>
              <div id="compte">
                 <div class="soldeCompte">
                     <p id="deposite" ><?=$soldeDeposite["solde"];?><?= $soldeDeposite[1];?></p>
                 </div>
             </div>
-    </div>
 
 </div>
 
