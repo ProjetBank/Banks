@@ -20,7 +20,3 @@ ob_start()
 $page_content = ob_get_clean();
 
 ?>
-
-
-</body>
-</html>

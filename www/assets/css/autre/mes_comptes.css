@@ -1,0 +1,57 @@
+.soldeCompte{
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+}
+#compte{
+    border: 2px solid black;
+    border-radius: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 10%;
+
+}
+img{
+    width: 20%;
+    height: 20%;
+}
+.soldeCompte p{
+    margin: 0;
+    color: green;
+    text-align: center;
+}
+
+body{
+    background-color: #B4CDED;
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#accueil_title{
+    text-align: center;
+}
+
+#accueil_body2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#body2_title{
+    text-align: center;
+}
+#accueil_body3{
+    display: flex;
+}
+#body3_1{
+    text-align: center;
+    display: flex;
+    flex: 1;
+}
+#body3_2{
+    text-align: center;
+    display: flex;
+    flex: 1;
+}

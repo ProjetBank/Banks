@@ -1,0 +1,62 @@
+.listeTransaction{
+    display: flex;
+    flex-direction: column;
+}
+
+.transactionDate{
+    height: 30px;
+}
+
+.transactionInfos{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-left: 75px;
+
+}
+#transactions{
+    display: flex;
+    border: 2px solid black;
+    border-radius: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 10%;
+    padding-left: 10%;
+}
+
+
+body{
+    background-color: #B4CDED;
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+#accueil_title{
+    text-align: center;
+}
+
+#accueil_body2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#body2_title{
+    text-align: center;
+}
+#accueil_body3{
+    display: flex;
+}
+#body3_1{
+    text-align: center;
+    display: flex;
+    flex: 1;
+}
+#body3_2{
+    text-align: center;
+    display: flex;
+    flex: 1;
+}

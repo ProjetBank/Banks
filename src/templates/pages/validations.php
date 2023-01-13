@@ -1,16 +1,14 @@
 <?php
-$page_title = "Espace Client - Bank-JLF.com";
+$page_title = "Validations - Bank-JLF.com";
 
 
 // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
 ob_start();
 
 ?>
-<?= $_SESSION['user']['id'] ?>
-
 <div id="accueil_body1">
     <div id="accueil_title">
-        <h1> BANQUE JLF | Mon Espace </h1>
+        <h1> BANQUE JLF | Validations </h1>
     </div>
 </div>
 

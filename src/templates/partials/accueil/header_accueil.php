@@ -1,8 +1,10 @@
+
 <header>
     <div class="logo">
         <img src="../assets/imgs/bank_icon.png"  class="icon_site" alt="icon">
         <a href="/?page=accueil" class="header__logo"></a>
     </div>
+
 
     <!-- Navbar -->
 
