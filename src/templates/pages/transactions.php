@@ -82,10 +82,15 @@ if(isset($_POST['buttonAcceptation'])){
         $requestSolde1 -> execute([$_POST['montant'], $_POST['id_envoyeur']]);
         $solde1 = $requestSolde1 -> fetch();
 
+        header('Location: /?page=transactions');
+        exit();
     }else if($_POST['Name1'] == "withdraw"){
         $requestSolde1 = $conn -> prepare('UPDATE bankaccounts SET solde = solde - ? WHERE id_user = ?');
         $requestSolde1 -> execute([$_POST['montant'], $_POST['id_envoyeur']]);
         $solde1 = $requestSolde1 -> fetch();
+
+        header('Location: /?page=transactions');
+        exit();
 
     }
 
