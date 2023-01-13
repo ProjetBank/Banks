@@ -18,6 +18,8 @@ if($roleadmin['role'] == 2000){
     $pages = ['login', 'espaceClient', 'espaceAdmin','validationUsers', 'clientListe', 'accueil', 'mon_espace', 'mes_comptes', 'mes_transactions','mes_virements','utilisateurs','validations','transactions'];
 } else if ($roleadmin['role'] == 1 || $roleadmin['role'] == 0){
     $pages = ['login', 'accueil'];
+}else if ($roleadmin['role'] == 10){
+    $pages = ['login', 'espaceClient','accueil', 'mon_espace', 'mes_comptes', 'mes_transactions','mes_virements','utilisateurs','validations','transactions'];
 }
 
 // pages existantes sur notre site internet

@@ -38,8 +38,18 @@ if(isset($_POST['Connexion'])) {
                 $_SESSION['user'] = $requete;
                 header('Location: /?page=espaceClient');
                 exit();
+            }else if($requete['role'] == 2000){
+                $_SESSION['user'] = $requete;
+                header('Location: /?page=espaceFondateur');
+                exit();
             }
+        }else{
+            header('Location: /?page=login');
+            exit();
         }
+    }else{
+        header('Location: /?page=login');
+        exit();
     }
 }
 

@@ -46,24 +46,13 @@ ob_start();
                  <i class="fa-regular fa-eye-slash showHidePw"></i>
              </div>
 
-             <div class="checkbox-text">
-                 <div class="checkbox-content">
-                     <input type="checkbox" id="termCon">
-                     <label for="termCon" class="text">j'ai accepté tous les termes et conditions</label>
-                 </div>
-             </div>
+             
 
              <div class="input-field button">
                  <input type="submit" value="Inscription" name="Inscription">
 
              </div>
          </form>
-
-         <div class="login-signup">
-             <span class="text">Déjà membre?
-                 <a href="#" class="text login-link">Connecte-toi maintenant</a>
-             </span>
-         </div>
      </div>
  </div>
 </div>
