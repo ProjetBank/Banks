@@ -3,22 +3,10 @@ $page_title = "Espace Client - Bank-JLF.com";
 
 // ob_start, c'est comme si tu ouvrais les "" pour enregistrer une grosse chaine de caracteres.
 ob_start();
-$requestSolde = $conn -> prepare("SELECT role FROM users WHERE id = 8");
-$requestSolde -> execute();
-$roleadmin = $requestSolde -> fetch();
 
-if($roleadmin['role'] != 1000 && $roleadmin['role'] != 200){
-    header('Location: /?page=accueil');
-    exit();
-}
 
 //if($_SERVER['PHP_SELF'] )
 ?>
-<?= $_SESSION['user']['id'] ?>
-<?= $roleadmin['role'] ?>
-
-
-
 
 
 <div id="accueil_body1">
